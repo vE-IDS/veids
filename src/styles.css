@@ -38,7 +38,7 @@
 
 @layer components {
     .navbar {
-        @apply relative w-screen h-max p-2 bg-dark-gray
+        @apply sticky w-screen h-max p-2 bg-dark-gray
     }
 
     .home-container {

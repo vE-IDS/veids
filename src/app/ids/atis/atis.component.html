@@ -1,0 +1,29 @@
+<div *ngIf="data" class="bg-light-gray flex flex-row px-5 py-5">
+    <div>
+        <h3 class="w-18 text-center">{{data.airport}}</h3>
+
+        <div *ngIf="data.information" class="bg-green-700 relative w-18 h-18 flex justify-center items-center">
+            <h1 class="text-center text-4xl">{{data.information}}</h1>
+        </div>
+    </div>
+
+    <div class="pl-5 w-120 relative">
+        <h5>{{data.metar}}</h5>
+
+        <div class="flex flex-row gap-x-10 absolute bottom-0">
+            <div *ngIf="data.activeDepartures">
+                <h5 class="font-bold mb-1">Departing</h5>
+                <div class="flex flex-row gap-x-2">
+                    <h5 class="bg-accent p-1 w-max" *ngFor="let dep of data.activeDepartures">{{dep}}</h5>
+                </div>
+            </div>
+
+            <div *ngIf="data.activeApproaches">
+                <h5 class="font-bold mb-1">Arriving</h5>
+                <div class="flex flex-row gap-x-2">
+                    <h5 class="bg-accent p-1 w-max" *ngFor="let arr of data.activeApproaches">{{arr}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

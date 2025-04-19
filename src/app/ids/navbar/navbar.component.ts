@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { ClockComponent } from "../clock/clock.component";
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [ClockComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })

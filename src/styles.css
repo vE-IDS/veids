@@ -34,6 +34,14 @@
     h5 {
         @apply text-sm
     }
+
+    h6 {
+        @apply text-xs
+    }
+
+    p {
+        @apply text-[12px]
+    }
 }
 
 @layer components {
@@ -47,5 +55,9 @@
 
     .home-button {
         @apply bg-light-gray py-1 transition text-center hover:bg-accent w-full
+    }
+
+    .approach-box {
+        @apply bg-accent px-1 w-max drop-shadow-lg drop-shadow-black
     }
 }

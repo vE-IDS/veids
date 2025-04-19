@@ -1,3 +1,9 @@
 <div class="bg-dark-gray h-dvh w-max absolute top-0 pt-15" >
-    <app-atis *ngFor="let data of atis" [data]="data"/>
+    <table>
+        <tbody>
+            @for (item of atis; track $index) {
+                <app-atis [data]="item" [index]="$index"/>
+            }
+        </tbody>
+    </table>
 </div>

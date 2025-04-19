@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ATIS, AtisService } from '../../services/atis/atis.service';
 import { AtisComponent } from "../atis/atis.component";
 import { NgFor } from '@angular/common';

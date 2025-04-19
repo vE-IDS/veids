@@ -1,29 +1,35 @@
-<div *ngIf="data" class="bg-light-gray flex flex-row px-5 py-5">
+<div *ngIf="data" [className]="getContainerClass(index || 0)">
     <div>
-        <h3 class="w-18 text-center">{{data.airport}}</h3>
+        <h5 class="max-w-18 text-center">{{data.airport}}</h5>
 
-        <div *ngIf="data.information" class="bg-green-700 relative w-18 h-18 flex justify-center items-center">
-            <h1 class="text-center text-4xl">{{data.information}}</h1>
+        <div *ngIf="data.information" class="bg-green-700 relative w-15 h-15 flex justify-center items-center drop-shadow-md drop-shadow-black">
+            <h1 class="text-center text-xl ">{{data.information}}</h1>
         </div>
     </div>
 
-    <div class="pl-5 w-120 relative">
-        <h5>{{data.metar}}</h5>
+    <div class="pl-5 w-100 relative">
+        <h6 class="max-h-5 w-full">{{data.metar}}</h6>
 
         <div class="flex flex-row gap-x-10 absolute bottom-0">
             <div *ngIf="data.activeDepartures">
-                <h5 class="font-bold mb-1">Departing</h5>
+                <p class="font-bold mb-.5">Departing</p>
                 <div class="flex flex-row gap-x-2">
-                    <h5 class="bg-accent p-1 w-max" *ngFor="let dep of data.activeDepartures">{{dep}}</h5>
+                    <p class="approach-box bg-black py-.5" *ngFor="let dep of data.activeDepartures">{{dep}}</p>
                 </div>
             </div>
 
             <div *ngIf="data.activeApproaches">
-                <h5 class="font-bold mb-1">Arriving</h5>
+                <p class="font-bold mb-.5">Arriving</p>
                 <div class="flex flex-row gap-x-2">
-                    <h5 class="bg-accent p-1 w-max" *ngFor="let arr of data.activeApproaches">{{arr}}</h5>
+                    <p class="approach-box py-.5" *ngFor="let arr of data.activeApproaches">{{arr}}</p>
                 </div>
             </div>
+
+            
+        </div>
+        <div *ngIf="data.status" class="absolute right-5 bottom-0">
+            <h6 class="mb-2">Status</h6>
+            <p [className]="statusColor.toString()">{{data.status}}</p>
         </div>
     </div>
 </div>

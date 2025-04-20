@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { subscribe } from 'diagnostics_channel';
-import { map, Observable } from 'rxjs';
+import { map, Observable, share, shareReplay, switchMap } from 'rxjs';
+import { VatsimService } from '../vatsim/vatsim.service';
+import { VATSIMData } from '../../types/vatsim.type';
 
 @Injectable({
   providedIn: 'root'
@@ -33,12 +35,32 @@ export class AtisService {
     facility: 'ZMA'
   }]
   
-  private ATIS: Observable<ATIS[]>
+  private ATIS: Observable<ATIS[]> = new Observable()
 
-  constructor() {
-    this.ATIS = new Observable((subscriber) => {
-      subscriber.next(this.ATISData)
+  constructor(vatsimService: VatsimService) {
+    vatsimService.getDataObservable().subscribe((data) => {
+      this.ATIS.pipe(
+        switchMap(() => this.getAtisData(data)),
+      )
+      console.log('ATIS updated')
     })
+  }
+
+  private getAtisData(data: VATSIMData): ATIS[] {
+    const newATIS: ATIS[] = []
+    console.log(data.atis.length)
+    data.atis.map((value) => {
+
+      newATIS.push({
+        airport: value.callsign.slice(0,4),
+        information: value.atis_code,
+        metar: value.text_atis.toString(),
+        status: 'Active',
+        facility: value.facility.toString()
+      })
+    })
+
+    return newATIS
   }
 
   getAtisObservable(): Observable<ATIS[]> {

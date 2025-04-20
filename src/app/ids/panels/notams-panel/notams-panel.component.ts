@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PanelComponent } from "../../panel/panel.component";
+import { PanelComponent } from "../panel/panel.component";
 
 @Component({
   selector: 'app-notams-panel',

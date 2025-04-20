@@ -1,6 +1,7 @@
 <div class="bg-dark-gray w-max top-0 z-0 h-full" >
     <table>
         <tbody>
+            <h2 *ngIf="atisData.length == 0" class="p-1 w-125 text-center">No ATISs available</h2>
             @for (item of atisData; track $index) {
                 <app-atis-divider *ngIf="$index == 0 || (atisData[$index-1].facility.toLowerCase() !== item.facility.toLowerCase())" [facility]="item.facility"/>
                 <app-atis [data]="item" [index]="$index"/>

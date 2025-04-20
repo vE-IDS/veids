@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AtisContainerComponent } from "../atis-container/atis-container.component";
 import { DashboardFooterComponent } from "../dashboard-footer/dashboard-footer.component";
-import { NotamsPanelComponent } from "../../login/notams-panel/notams-panel.component";
+import { NotamsPanelComponent } from "../panels/notams-panel/notams-panel.component";
 
 @Component({
   selector: 'app-dashboard',

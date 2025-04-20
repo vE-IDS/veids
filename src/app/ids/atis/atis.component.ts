@@ -31,6 +31,6 @@ export class AtisComponent {
   }
 
   protected getContainerClass (i: number) {
-    return 'flex flex-row px-5 py-6 ' + (i % 2 == 0 ? 'bg-light-gray' :'bg-dark-gray')
+    return 'flex flex-row px-5 py-6 ' + (i % 2 == 0 ? 'bg-light-gray' :'bg-mid-gray')
   }
 }

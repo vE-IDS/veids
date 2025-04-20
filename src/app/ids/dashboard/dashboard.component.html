@@ -1,3 +1,14 @@
-<div class="w-screen h-full">
-    <app-atis-container/>
+<div class="w-screen h-screen">
+
+    <div class="h-[calc(100%-140px)] flex flex-row">
+        <div class="h-max w-max">
+            <app-atis-container/>
+        </div>
+
+        <div class="grid-container grid grid-cols3">
+            <app-notams-panel/>
+        </div>
+    </div>
+
+    <app-dashboard-footer/>
 </div>

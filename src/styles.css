@@ -4,6 +4,7 @@
 
 @theme {
     --color-accent: #0249C6;
+    --color-gray: #404040;
     --color-light-gray: #202020;
     --color-mid-gray: #141414;
     --color-dark-gray: #101010;
@@ -12,7 +13,7 @@
 
 @layer base {
     h1, h2, h3, h4, h5, h6, p, a, button, label, input {
-        @apply w-full font-inter text-white
+        @apply font-inter text-white
     }
 
     h1 {
@@ -36,7 +37,7 @@
     }
 
     h6 {
-        @apply text-xs
+        @apply text-xs font-light
     }
 
     p {
@@ -46,7 +47,7 @@
 
 @layer components {
     .navbar {
-        @apply sticky w-screen h-max p-2 bg-dark-gray
+        @apply sticky w-screen h-max p-2 bg-mid-gray
     }
 
     .home-container {
@@ -59,5 +60,9 @@
 
     .approach-box {
         @apply bg-accent px-1 w-max drop-shadow-lg drop-shadow-black
+    }
+
+    .subdivider {
+        @apply w-full bg-light-gray
     }
 }

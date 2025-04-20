@@ -1,7 +1,8 @@
-<div class="bg-dark-gray h-dvh w-max absolute top-0 pt-15" >
+<div class="bg-dark-gray w-max top-0 z-0 h-full" >
     <table>
         <tbody>
-            @for (item of atis; track $index) {
+            @for (item of atisData; track $index) {
+                <app-atis-divider *ngIf="$index == 0 || (atisData[$index-1].facility.toLowerCase() !== item.facility.toLowerCase())" [facility]="item.facility"/>
                 <app-atis [data]="item" [index]="$index"/>
             }
         </tbody>

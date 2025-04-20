@@ -3,7 +3,7 @@
         <h5 class="max-w-18 text-center">{{data.airport}}</h5>
 
         <div *ngIf="data.information" class="bg-green-700 relative w-15 h-15 flex justify-center items-center drop-shadow-md drop-shadow-black">
-            <h1 class="text-center text-xl ">{{data.information}}</h1>
+            <h1 class="text-center text-3xl">{{data.information}}</h1>
         </div>
     </div>
 
@@ -28,7 +28,7 @@
             
         </div>
         <div *ngIf="data.status" class="absolute right-5 bottom-0">
-            <h6 class="mb-2">Status</h6>
+            <h6 class="mb-1">Status</h6>
             <p [className]="statusColor.toString()">{{data.status}}</p>
         </div>
     </div>

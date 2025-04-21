@@ -1,5 +1,4 @@
 import { inject, Injectable } from '@angular/core';
-import { subscribe } from 'diagnostics_channel';
 import { BehaviorSubject, map, Observable, share, shareReplay, Subject, Subscriber, switchMap } from 'rxjs';
 import { VatsimService } from '../vatsim/vatsim.service';
 import { VATSIMData } from '../../types/vatsim.type';
@@ -59,7 +58,7 @@ export class AtisService {
         facility: value.facility.toString()
       })
     })
-    
+
     return newATIS
   }
 

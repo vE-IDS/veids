@@ -43,6 +43,18 @@
     p {
         @apply text-[12px]
     }
+
+    ::-webkit-scrollbar {
+        background-color: #101010;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #141414;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 @layer components {

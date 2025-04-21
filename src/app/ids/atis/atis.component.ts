@@ -1,10 +1,10 @@
 import { Component, effect, Input, input } from '@angular/core';
 import { ATIS } from '../../services/atis/atis.service';
-import { NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-atis',
-  imports: [NgIf, NgFor],
+  imports: [NgIf, NgFor, AsyncPipe],
   templateUrl: './atis.component.html',
   styleUrl: './atis.component.css'
 })
@@ -31,6 +31,6 @@ export class AtisComponent {
   }
 
   protected getContainerClass (i: number) {
-    return 'flex flex-row px-5 py-6 ' + (i % 2 == 0 ? 'bg-light-gray' :'bg-mid-gray')
+    return 'flex flex-row px-5 py-6 z-10 ' + (i % 2 == 0 ? 'bg-light-gray' :'bg-mid-gray')
   }
 }

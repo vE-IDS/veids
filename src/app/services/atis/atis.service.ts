@@ -1,15 +1,16 @@
 import { inject, Injectable } from '@angular/core';
 import { subscribe } from 'diagnostics_channel';
-import { map, Observable, share, shareReplay, switchMap } from 'rxjs';
+import { BehaviorSubject, map, Observable, share, shareReplay, Subject, Subscriber, switchMap } from 'rxjs';
 import { VatsimService } from '../vatsim/vatsim.service';
 import { VATSIMData } from '../../types/vatsim.type';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AtisService {
-  private ATISData: ATIS[] = [{
+  /*private ATISData: ATIS[] = [{
     airport: 'KMCO/D',
     information: 'A',
     metar: 'KMCO 190353Z 10005KT 10SM CLR 20/17 A3028 RMK AO2 SLP250 T02000172',
@@ -33,37 +34,40 @@ export class AtisService {
     activeApproaches: ['ILS 9R'],
     activeDepartures: ['9L'],
     facility: 'ZMA'
-  }]
+  }]*/
   
-  private ATIS: Observable<ATIS[]> = new Observable()
+  private ATIS: BehaviorSubject<ATIS[]> = new BehaviorSubject<ATIS[]>([])
+  private http
 
-  constructor(vatsimService: VatsimService) {
+  constructor(vatsimService: VatsimService, httpClient: HttpClient) {
+    this.http = httpClient
     vatsimService.getDataObservable().subscribe((data) => {
-      this.ATIS.pipe(
-        switchMap(() => this.getAtisData(data)),
-      )
+      this.ATIS.next(this.parseAtisData(data))
       console.log('ATIS updated')
     })
   }
 
-  private getAtisData(data: VATSIMData): ATIS[] {
+  private parseAtisData(data: VATSIMData): ATIS[] {
     const newATIS: ATIS[] = []
-    console.log(data.atis.length)
     data.atis.map((value) => {
 
       newATIS.push({
         airport: value.callsign.slice(0,4),
         information: value.atis_code,
-        metar: value.text_atis.toString(),
+        metar: this.getMetar(value.callsign.slice(0,4)),
         status: 'Active',
         facility: value.facility.toString()
       })
     })
-
+    
     return newATIS
   }
 
-  getAtisObservable(): Observable<ATIS[]> {
+  getMetar(icao: string): Observable<string> {
+    return this.http.get(`https://metar.vatsim.net/${icao}`, {responseType: "text"})
+  }
+
+  getAtisSubject(): BehaviorSubject<ATIS[]> {
     return this.ATIS
   }
 }
@@ -71,7 +75,7 @@ export class AtisService {
 export type ATIS = {
   airport: string
   information?: string
-  metar?: string
+  metar: Observable<string>
   status?: string
   facility: string
   activeApproaches?: string[]

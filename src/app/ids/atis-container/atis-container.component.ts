@@ -2,26 +2,20 @@ import { Component, Input } from '@angular/core';
 import { ATIS, AtisService } from '../../services/atis/atis.service';
 import { AtisComponent } from "../atis/atis.component";
 import { AtisDividerComponent } from "../atis-divider/atis-divider.component";
-import { Observable } from 'rxjs';
-import { NgIf } from '@angular/common';
+import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
+import { AsyncPipe, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-atis-container',
-  imports: [AtisComponent, AtisDividerComponent, NgIf],
+  imports: [AtisComponent, AtisDividerComponent, NgIf, AsyncPipe],
   providers: [AtisService],
   templateUrl: './atis-container.component.html',
   styleUrl: './atis-container.component.css'
 })
 export class AtisContainerComponent {
-  protected atis$: Observable<ATIS[]>
-  protected atisData: ATIS[] = []
+  protected atis$: Observable<ATIS[]> = new Observable<ATIS[]>()
 
   constructor(atisService: AtisService) {
-    this.atis$ = atisService.getAtisObservable()
-
-    this.atis$.subscribe((data) => {
-      data.sort((a, b) => a.facility.localeCompare(b.facility))
-      this.atisData = data
-    })
+    this.atis$ = atisService.getAtisSubject()
   }
 }

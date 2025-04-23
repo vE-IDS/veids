@@ -1,4 +1,5 @@
 <div *ngIf="data" [className]="getContainerClass(index || 0)">
+    <button (click)="showAirportInfo()" class="absolute top-2 left-2 text-xl">info</button>
     <div>
         <h5 class="max-w-18 text-center">{{data.airport}}</h5>
 

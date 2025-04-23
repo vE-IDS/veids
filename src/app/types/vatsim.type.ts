@@ -114,3 +114,25 @@ export type FeedRating = {
 }
 
 export enum FlightRules {"V", "I"}
+
+export type AIPAirport = {
+    icao: string
+    iata: string
+    name: string
+    altitude_m: number
+    altitude_ft: number
+    transition_alt: number
+    transition_level: string
+    transition_level_by_atc: boolean
+    city: string
+    country: string
+    division_id: string
+    stations: ATCStation[]
+}
+
+export type ATCStation = {
+    callsign: string
+    name: string
+    frequency: string
+    ctaf: boolean
+}

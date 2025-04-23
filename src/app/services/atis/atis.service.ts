@@ -48,8 +48,9 @@ export class AtisService {
 
   private parseAtisData(data: VATSIMData): ATIS[] {
     const newATIS: ATIS[] = []
-    data.atis.map((value) => {
-
+    data.atis
+    .filter((value) => value.callsign.charAt(0) === 'K')
+    .map((value) => {
       newATIS.push({
         airport: value.callsign.slice(0,4),
         information: value.atis_code,

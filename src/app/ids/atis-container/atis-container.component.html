@@ -1,12 +1,11 @@
 <div class="bg-dark-gray w-max top-0 z-0 h-full overflow-y-scroll no-scrollbar" >
     <table class="">
         <tbody>
-                <h2 *ngIf="(atis$ | async)!.length == 0" class="p-1 w-125 h-full overflow-y-scroll text-center">No ATISs available</h2>
+                <h2 *ngIf="(atis$ | async)?.length == 0" class="p-1 w-125 h-full overflow-y-scroll text-center">No ATISs available</h2>
                 @for (item of (atis$ | async); track $index) {
                     <app-atis-divider *ngIf="$index == 0 || ((atis$ | async)![$index-1].facility.toLowerCase() !== item.facility.toLowerCase())" [facility]="item.facility"/>
                     <app-atis [data]="item" [index]="$index"/>
                 }
-
         </tbody>
     </table>
 </div>

@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ATIS, AtisService } from '../../services/atis/atis.service';
 import { AtisComponent } from "../atis/atis.component";
 import { AtisDividerComponent } from "../atis-divider/atis-divider.component";
-import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
+import { Observable, } from 'rxjs';
 import { AsyncPipe, NgIf } from '@angular/common';
 
 @Component({
@@ -13,9 +13,15 @@ import { AsyncPipe, NgIf } from '@angular/common';
   styleUrl: './atis-container.component.css'
 })
 export class AtisContainerComponent {
-  protected atis$: Observable<ATIS[]> = new Observable<ATIS[]>()
+  protected atis$: Observable<ATIS[]>
+  protected atisService
 
   constructor(atisService: AtisService) {
-    this.atis$ = atisService.getAtisSubject()
+    this.atisService = atisService
+    this.atis$ = new Observable<ATIS[]>()
+  }
+
+  ngOnInit() {
+    this.atis$ = this.atisService.getAtisSubject();
   }
 }

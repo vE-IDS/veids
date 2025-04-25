@@ -9,12 +9,10 @@ export const routes: Routes = [
     {
         path: 'ids', 
         component: IdsLayoutComponent,
-        children: [
-            {path: '', component: DashboardComponent}
-        ]
+        pathMatch: 'full'
     },
     {
         path: '', 
         component: HomeComponent,
-    },
+    }
 ];

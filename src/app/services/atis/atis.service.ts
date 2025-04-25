@@ -64,7 +64,7 @@ export class AtisService {
   }
 
   getMetar(icao: string): Observable<string> {
-    return this.http.get(`https://metar.vatsim.net/${icao}`, {responseType: "text"})
+    return this.http.get(`/api/weather/metar/${icao}`, {responseType: 'text', withCredentials: false})
   }
 
   getAtisSubject(): BehaviorSubject<ATIS[]> {

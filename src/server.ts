@@ -4,6 +4,7 @@ import express from 'express';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import bootstrap from './main.server';
+import apiRouter from './api/router'
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
@@ -23,6 +24,7 @@ const commonEngine = new CommonEngine();
  * });
  * ```
  */
+app.use('/api', apiRouter)
 
 /**
  * Serve static files from /browser
@@ -63,3 +65,5 @@ if (isMainModule(import.meta.url)) {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
 }
+
+export default app;

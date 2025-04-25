@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
-import { AIPAirport } from '../../types/vatsim.type';
+import { Airport } from '../../types/vatsim.type';
 import { firstValueFrom, map, Observable, take } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class AirportService {
-  private airports: AIPAirport[] = []
+  private airports: Airport[] = []
   private http
 
   constructor(httpClient: HttpClient) { 
     this.http = httpClient
   }
 
-  public getAIPAirport(icao: string): Observable<AIPAirport> {
-    const index = this.airports.findIndex((e) => e.icao == icao)
+  public getAIPAirport(icao: string): Observable<Airport> {
+    const index = this.airports.findIndex((e) => e.icao_ident == icao)
     if (index != -1) {
-      return new Observable<AIPAirport>()
+      return new Observable<Airport>()
       .pipe(
         map(() => this.airports[index])
       )
     } else {
-      return this.http.get<AIPAirport>(`https://my.vatsim.net/api/v2/aip/airports/${icao}/`, {withCredentials: false})
+      return this.http.get<Airport>(`https://aviationapi.com/api/v1/airports`, {params: {apt: icao}, withCredentials: false, headers: {}})
       .pipe(
         map((data) => {
           this.airports.push(data)

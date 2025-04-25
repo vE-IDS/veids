@@ -115,19 +115,47 @@ export type FeedRating = {
 
 export enum FlightRules {"V", "I"}
 
-export type AIPAirport = {
-    icao: string
-    iata: string
-    name: string
-    altitude_m: number
-    altitude_ft: number
-    transition_alt: number
-    transition_level: string
-    transition_level_by_atc: boolean
-    city: string
-    country: string
-    division_id: string
-    stations: ATCStation[]
+export type Airport = {
+        site_number: string,
+        type: string,
+        facility_name: string,
+        faa_ident: string,
+        icao_ident: string,
+        district_office: string,
+        state: string,
+        state_full: string
+        county: string
+        city: string
+        ownership: string
+        use: string
+        manager: string
+        manager_phone: string
+        latitude: string
+        latitude_sec: string
+        longitude: string
+        longitude_sec: string
+        elevation: string
+        magnetic_variation: string
+        tpa: string
+        vfr_sectional: string
+        boundary_artcc: string
+        boundary_artcc_name: string
+        responsible_artcc: string
+        responsible_artcc_name: string
+        fss_phone_number: string
+        fss_phone_numer_tollfree: string
+        notam_facility_ident: string
+        status: string
+        certification_typedate: string
+        customs_airport_of_entry: string
+        military_joint_use: string
+        military_landing: string
+        lighting_schedule: string
+        beacon_schedule: string
+        control_tower: string
+        unicom: string
+        ctaf: string
+        effective_date: string
 }
 
 export type ATCStation = {

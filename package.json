@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr": "node dist/idsv2/server/server.mjs --watch",
-    "dev": "nodemon --watch src/ -e ts,html,scss --exec npm run serve:ssr"
+    "server": "tsx watch src/server.ts"
   },
   "private": true,
   "dependencies": {
@@ -30,11 +30,13 @@
     "axios": "1.8.4",
     "bootstrap": "^5.3.3",
     "cors": "2.8.5",
+    "dotenv": "16.5.0",
     "express": "^4.18.2",
     "nodemon": "^3.1.10",
     "rxjs": "~7.8.0",
     "sass": "1.87.0",
     "tslib": "^2.3.0",
+    "tsx": "4.19.3",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {

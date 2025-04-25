@@ -16,17 +16,15 @@ export class ClockComponent {
   protected seconds$: Observable<string>
 
   constructor () {
-    this.time$ = new Observable<Date>()
-    this.hours$ = this.time$.pipe(map((t) => t.getUTCHours().toString().padStart(2, "0")))
-    this.minutes$ = this.time$.pipe(map((t) => t.getUTCMinutes().toString().padStart(2, "0")))
-    this.seconds$ = this.time$.pipe(map((t) => t.getUTCSeconds().toString().padStart(2, "0")))
-  }
-  ngAfterViewInit() {
     this.time$ = timer(0, 1000)
     .pipe(
       map(tick => new Date()),
       shareReplay(1)
     )
+    this.hours$ = this.time$.pipe(map((t) => t.getUTCHours().toString().padStart(2, "0")))
+    this.minutes$ = this.time$.pipe(map((t) => t.getUTCMinutes().toString().padStart(2, "0")))
+    this.seconds$ = this.time$.pipe(map((t) => t.getUTCSeconds().toString().padStart(2, "0")))
   }
+
 }
 

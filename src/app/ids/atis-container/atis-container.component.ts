@@ -18,10 +18,6 @@ export class AtisContainerComponent {
 
   constructor(atisService: AtisService) {
     this.atisService = atisService
-    this.atis$ = new Observable<ATIS[]>()
-  }
-
-  ngOnInit() {
     this.atis$ = this.atisService.getAtisSubject();
   }
 }

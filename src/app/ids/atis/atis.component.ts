@@ -4,6 +4,8 @@ import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { AirportService } from '../../services/airport/airport.service';
 import {MatIconModule} from '@angular/material/icon';
 import { MatIconRegistry } from '@angular/material/icon';
+import { Airport } from '../../types/vatsim.type';
+import { lastValueFrom, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-atis',
@@ -20,15 +22,15 @@ export class AtisComponent {
   protected airportService
   protected matIconRegistry
 
+  protected airportData: Promise<Airport>  = new Promise(() => null)
+
   constructor(airportService: AirportService, matIconRegistry: MatIconRegistry) {
     this.airportService = airportService
     this.matIconRegistry = matIconRegistry
-  }
 
-  ngOnInit() {
-    this.data?.metar.subscribe((data) => {
-      console.log(data)
-    })
+    if (this.data?.airport) {
+      this.airportData = lastValueFrom(this.airportService.getAIPAirport(this.data.airport))
+    }
   }
 
   protected getContainerClass (i: number) {
@@ -36,11 +38,6 @@ export class AtisComponent {
   }
 
   protected showAirportInfo() {
-    if (this.data?.airport) {
-      this.airportService.getAIPAirport(this.data.airport)
-      .subscribe((ap) => {
-        console.log(ap)
-      })
-    }
+    
   }
 }

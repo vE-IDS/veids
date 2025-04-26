@@ -1,0 +1,13 @@
+<td class="">
+  <button
+    [class]="
+      'w-40 h-10 border-r-2 border-b-2 border-mid-gray ' +
+      (disabled ? 'bg-light-gray' : 'bg-accent')
+    "
+  >
+    <a *ngIf="!disabled" [routerLink]="['/', '/ids', href]" class="text-xs">
+      {{ text }}
+    </a>
+    <p *ngIf="disabled">DISABLED</p>
+  </button>
+</td>

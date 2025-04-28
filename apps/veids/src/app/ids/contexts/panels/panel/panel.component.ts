@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './panel.component.css',
 })
 export class PanelComponent {
-  @Input({ required: true }) title: string = '';
-  @Input({ required: true }) size: number = 0;
+  @Input({ required: true }) title = '';
+  @Input({ required: true }) size = 0;
 }

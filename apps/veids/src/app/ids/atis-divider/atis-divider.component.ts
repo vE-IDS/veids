@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './atis-divider.component.css',
 })
 export class AtisDividerComponent {
-  @Input({ required: true }) facility: string = '';
+  @Input({ required: true }) facility = '';
 }

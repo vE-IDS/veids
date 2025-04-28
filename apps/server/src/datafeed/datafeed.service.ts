@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom, map, Observable } from 'rxjs'
-import { VATSIMData } from './iterfaces/datafeed.interface';
+import { VATSIMData } from './interfaces/datafeed.interface';
 import ATIS from './dto/atis.dto';
 
 @Injectable()

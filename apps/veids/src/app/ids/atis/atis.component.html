@@ -12,7 +12,7 @@
   </div>
 
   <div class="pl-5 w-100 relative z-0">
-    <h6 class="max-h-5 w-9/10">{{data.metar}}</h6>
+    <h6 class="max-h-5 w-8/10">{{data.metar}}</h6>
 
     <div class="flex flex-row gap-x-10 absolute bottom-0">
       <div *ngIf="data.activeDepartures">
@@ -39,11 +39,12 @@
         </div>
       </div>
     </div>
-    <div *ngIf="data.status" class="absolute right-5 bottom-0">
+    
+    <div class="absolute right-5 bottom-0">
       <h6 class="mb-1">Status</h6>
       <p [className]="statusColor.toString()">{{ data.status }}</p>
 
-      <button class="absolute -top-10 right-0 text-xl">
+      <button type='button' class="absolute -top-10 right-0 text-xl">
         <mat-icon fontIcon="info" color="#000000" />
       </button>
     </div>

@@ -9,6 +9,6 @@ Install:
 - Run pnpm install
 - Populate ENV values. For database url, refer to Prisma docs.
 - In schema.prisma, select appropriate values for what database software you are using.
-- run npx prisma migrate deploy
-- run `npm run server` for api routing
-- run `ng serve` for frontend and enjoy
+- run npx prisma migrate deploy for initial database population.
+- run `nx serve veids` for frontend
+- run `nx serve server` for API

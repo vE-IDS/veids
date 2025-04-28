@@ -8,10 +8,11 @@
         No ATISs available
       </h2>
       @for (item of (atis$ | async); track $index) {
-      <app-atis-divider
-        *ngIf="$index == 0 || ((atis$ | async)[$index - 1] && (atis$ | async)[$index - 1]?.facility?.toLowerCase() !== item.facility.toLowerCase())"
-        [facility]="item.facility"
-      />
+        @if ($index == 0) {
+          <app-atis-divider
+            [facility]="item.facility"
+          />
+        }
       <app-atis [data]="item" [index]="$index" />
       }
     </tbody>

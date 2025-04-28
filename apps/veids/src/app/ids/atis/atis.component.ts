@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatIconRegistry } from '@angular/material/icon';
 import { Airport } from '../../types/vatsim.type';
@@ -7,7 +7,7 @@ import { ATIS } from '../../services/datafeed/datafeed.service';
 
 @Component({
   selector: 'app-atis',
-  imports: [NgIf, NgFor, AsyncPipe, MatIconModule],
+  imports: [NgIf, NgFor, MatIconModule],
   providers: [],
   templateUrl: './atis.component.html',
   styleUrl: './atis.component.css',

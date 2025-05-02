@@ -89,6 +89,7 @@
     "nx": "20.8.1",
     "postcss": "^8.5.3",
     "prettier": "^2.6.2",
+    "prisma": "^6.7.0",
     "tailwindcss": "^4.1.4",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",

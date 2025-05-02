@@ -17,7 +17,7 @@ export const routes: Routes = [
 
       },
       {
-        path: 'info',
+        path: 'info/:airportId',
         component: AirportInfoComponent,
       }
 

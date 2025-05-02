@@ -1,6 +1,9 @@
 <app-context-layout [title]="'Airport Info'">
     <div class="p-2">
-        <h2 class="mb-2">KMCO - Orlando International Airport</h2>
+        @if ((params | async) != null) {
+            <h2 class="mb-2">{{(params | async)!['airportId']}}</h2>
+        }
+        
 
         <div class="flex flex-wrap">
             <div class="grid-container">

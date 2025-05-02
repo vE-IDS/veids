@@ -1,14 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, Input, WritableSignal } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatIconRegistry } from '@angular/material/icon';
 import { Airport } from '../../types/vatsim.type';
-import { ATIS } from '../../services/datafeed/datafeed.service';
+import { ATIS, DatafeedService } from '../../services/datafeed/datafeed.service';
+import { formatDateToZ } from '../../../lib/format';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-atis',
-  imports: [NgIf, NgFor, MatIconModule],
-  providers: [],
+  imports: [NgIf, NgFor, MatIconModule, RouterLink],
+  providers: [DatafeedService],
   templateUrl: './atis.component.html',
   styleUrl: './atis.component.css',
 })
@@ -17,16 +19,16 @@ export class AtisComponent {
   @Input() data?: ATIS;
   @Input({ required: true }) index?: number;
 
-  protected readonly statusColor = 'text-amber-700';
-  protected matIconRegistry;
-
-  protected airportData: Promise<Airport> = new Promise(() => null);
+  protected readonly statusColor = 'text-amber-700'
+  protected airportData: Promise<Airport> = new Promise(() => null)
+  protected readonly lastUpdated$: WritableSignal<Date>
+  protected readonly lastUpdatedString = computed(() => formatDateToZ(this.lastUpdated$()))
 
   constructor(
-    matIconRegistry: MatIconRegistry
+    protected readonly matIconRegistry: MatIconRegistry,
+    protected readonly datafeedService: DatafeedService
   ) {
-    this.matIconRegistry = matIconRegistry;
-
+    this.lastUpdated$ = datafeedService.getUpdateTimeSignal()
   }
 
   protected getContainerClass(i: number) {

@@ -9,7 +9,7 @@ export class DatafeedController {
     @Get('atis')
     async getAtisList(@Res() res: Response) {
         try {
-            const atisList = await this.datafeedService.getAllAtis()
+            const atisList = await this.datafeedService.updateAllAtis()
             res.send(atisList)
         }
             catch (error) {

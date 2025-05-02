@@ -8,7 +8,7 @@ import ATIS from './dto/atis.dto';
 export class DatafeedService {
     constructor(private readonly httpModule: HttpService) {}
 
-    async getAllAtis(): Promise<ATIS[]> {
+    async updateAllAtis(): Promise<ATIS[]> {
         const vatsimData = await this.getVatsimData()
         const atisList: ATIS[] = []
         console.log(vatsimData)
@@ -43,44 +43,3 @@ export class DatafeedService {
         return response.data
     }
 }
-
-/*
-private ATIS: BehaviorSubject<ATIS[]> = new BehaviorSubject<ATIS[]>([]);
-  private http;
-
-  constructor(vatsimService: VatsimService, httpClient: HttpClient) {
-    this.http = httpClient;
-    vatsimService.getDataObservable().subscribe((data) => {
-      this.ATIS.next(this.parseAtisData(data));
-      console.log('ATIS updated');
-    });
-  }
-
-  private parseAtisData(data: VATSIMData): ATIS[] {
-    const newATIS: ATIS[] = [];
-    data.atis
-      .filter((value) => value.callsign.charAt(0) === 'K')
-      .map((value) => {
-        newATIS.push({
-          airport: value.callsign.slice(0, 4),
-          information: value.atis_code,
-          metar: this.getMetar(value.callsign.slice(0, 4)),
-          status: 'Active',
-          facility: value.facility.toString(),
-        });
-      });
-
-    return newATIS;
-  }
-
-  getMetar(icao: string): Observable<string> {
-    return this.http.get(`/api/weather/metar/${icao}`, {
-      responseType: 'text',
-      withCredentials: false,
-    });
-  }
-
-  getAtisSubject(): BehaviorSubject<ATIS[]> {
-    return this.ATIS;
-  }
-*/
